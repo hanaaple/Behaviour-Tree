@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Final/UI%20Builder/EditorNodeStyle.uss?fileID=7433441132597879392&amp;guid=c5e118c95ce49dc46aa33cf57516dc28&amp;type=3#EditorNodeStyle" />
+    <ui:VisualElement name="node-state" style="flex-grow: 1;" />
+    <ui:VisualElement name="node-border">
+        <ui:VisualElement name="contents">
+            <ui:VisualElement name="top">
+                <ui:VisualElement name="input" />
+                <ui:VisualElement name="divider" class="vertical" />
+                <ui:VisualElement name="title" style="align-items: stretch; -unity-text-align: upper-left;">
+                    <ui:Label name="title-label" text="RootBTNode" class="unity-text-element unity-label" style="align-items: stretch;" />
+                    <ui:VisualElement name="title-button-container">
+                        <ui:VisualElement name="collapse-button">
+                            <ui:VisualElement name="icon" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text="This is a description" parse-escape-sequences="true" display-tooltip-when-elided="true" name="description" />
+                <ui:VisualElement name="divider" class="horizontal" />
+                <ui:VisualElement name="output" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="selection-border" picking-mode="Ignore" />
+</ui:UXML>

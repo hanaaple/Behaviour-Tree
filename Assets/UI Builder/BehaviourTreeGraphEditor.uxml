@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Assets/UI%20Builder/BehaviourTreeGraphViewStyle.uss?fileID=7433441132597879392&amp;guid=309571df01f3fde478c36b7cc601bf45&amp;type=3#BehaviourTreeGraphViewStyle" />
+    <uie:Toolbar>
+        <ui:Label tabindex="-1" text="Assets" parse-escape-sequences="true" display-tooltip-when-elided="true" style="color: rgb(212, 212, 212); justify-content: flex-start; align-self: auto; align-items: auto; flex-shrink: 0; flex-grow: 0; -unity-text-align: middle-center; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+        <uie:ToolbarMenu tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" />
+    </uie:Toolbar>
+    <BehaviourTreeGraphEditor.Editor.SplitView fixed-pane-initial-dimension="200" name="SplitView">
+        <ui:VisualElement name="left-panel" style="flex-grow: 1; width: 200px;">
+            <ui:VisualElement name="inspector-container" style="flex-grow: 1; height: auto;">
+                <ui:Label tabindex="-1" text="Inspector" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 5px; color: rgb(196, 196, 196);" />
+                <BehaviourTreeGraphEditor.Editor.InspectorView style="flex-grow: 1; background-color: rgb(56, 56, 56);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="right-panel" style="flex-grow: 1;">
+            <ui:Label tabindex="-1" text="Tree View" parse-escape-sequences="true" display-tooltip-when-elided="true" style="background-color: rgb(37, 37, 37); margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 5px; color: rgb(196, 196, 196);" />
+            <BehaviourTreeGraphEditor.Editor.BehaviourTreeGraphView name="BehaviourTreeGraphView" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </BehaviourTreeGraphEditor.Editor.SplitView>
+</ui:UXML>
