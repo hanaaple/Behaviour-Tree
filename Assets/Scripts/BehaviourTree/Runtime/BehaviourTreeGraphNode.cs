@@ -12,6 +12,7 @@ using UnityEditor;
 
 namespace BehaviourTreeGraph.Runtime
 {
+    // if you want to copy field, set public or SerializedField
     [Serializable]
     public abstract class BehaviourTreeGraphNode : ScriptableObject
     {
@@ -58,6 +59,12 @@ namespace BehaviourTreeGraph.Runtime
             // Debug.LogWarning($"{name},  {m_Position}   {m_Guid}");
         }
 
+        public virtual void InitializeState()
+        {
+            nodeState = 0;
+            started = false;
+        }
+
         public NodeState Update()
         {
             nodeState = NodeState.Running;
@@ -78,10 +85,15 @@ namespace BehaviourTreeGraph.Runtime
             return nodeState;
         }
 
-        public void SetPosition(Rect pos)
+        public void SetPosition(Rect rect)
         {
             // Debug.LogWarning($"Set Position {m_Position.position} -> {pos.position}");
-            position = pos;
+            position = rect;
+        }
+
+        public void SetGuid(string id)
+        {
+            guid = id;
         }
 
         public virtual BehaviourTreeGraphNode Clone()
@@ -102,18 +114,20 @@ namespace BehaviourTreeGraph.Runtime
         protected abstract NodeState OnUpdate();
 
         /// <summary>
-        /// Convert Node Data to String
-        /// Try Implement for Copy field data
-        /// 
-        /// Do Not use Separator "///", "|||"
+        /// Convert Field Data to Json
         /// </summary>
-        /// <returns> return String Data </returns>
-        public abstract string GetStringData();
+        public string GetJsonData()
+        {
+            return JsonUtility.ToJson(this);
+        }
 
         /// <summary>
-        /// Try Implement for Paste field data
+        /// Load Field Data From Json
         /// </summary>
-        public abstract void LoadDataFromString(string loadData);
+        public void LoadDataFromJson(string loadData)
+        {
+            JsonUtility.FromJsonOverwrite(loadData, this);
+        }
 
         public static void AddChild(BehaviourTreeGraphNode parent, BehaviourTreeGraphNode child)
         {

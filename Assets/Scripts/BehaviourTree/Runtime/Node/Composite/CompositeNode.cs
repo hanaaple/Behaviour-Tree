@@ -8,15 +8,6 @@ namespace BehaviourTreeGraph.Runtime.Node.Composite
     {
         [HideInInspector] public List<BehaviourTreeGraphNode> children = new();
 
-        public override string GetStringData()
-        {
-            return "";
-        }
-
-        public override void LoadDataFromString(string loadData)
-        {
-        }
-
         public override BehaviourTreeGraphNode Clone()
         {
             CompositeNode node = Instantiate(this);

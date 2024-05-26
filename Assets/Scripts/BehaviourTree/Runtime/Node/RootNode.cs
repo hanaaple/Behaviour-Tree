@@ -19,15 +19,6 @@ namespace BehaviourTreeGraph.Runtime.Node
             return child.Update();
         }
 
-        public override string GetStringData()
-        {
-            return "";
-        }
-
-        public override void LoadDataFromString(string loadData)
-        {
-        }
-
         public override BehaviourTreeGraphNode Clone()
         {
             RootNode node = Instantiate(this);

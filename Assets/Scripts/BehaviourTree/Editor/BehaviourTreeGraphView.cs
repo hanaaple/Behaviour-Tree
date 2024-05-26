@@ -226,18 +226,11 @@ namespace BehaviourTreeGraphEditor.Editor
 
             if (type == null || !type.IsSubclassOf(typeof(BehaviourTreeGraphNode))) return;
 
-            var guid = splitData[1];
-            var positionData = splitData[2];
-            var classData = splitData[3];
+            var jsonData = splitData[1];
 
-            var rectData = positionData.Split(",").Select(float.Parse).ToArray();
+            var node = CreateNode(type, jsonData);
 
-            var pos = new Rect(rectData[0], rectData[1], rectData[2], rectData[3]);
-
-            var node = CreateNode(type, default, guid);
-            node.LoadDataFromString(classData);
-
-            pos = new Rect(pos.position + new Vector2(10, 10), pos.size);
+            var pos = new Rect(node.pos.position + new Vector2(10, 10), node.pos.size);
             var editorNode = GetNodeByGuid(node.viewDataKey);
             editorNode.SetPosition(pos);
             node.SetPosition(pos);
@@ -306,14 +299,13 @@ namespace BehaviourTreeGraphEditor.Editor
                 guid = Guid.NewGuid().ToString();
             }
 
+            var temp = editorNode.node.viewDataKey;
+            
             stringBuilder.Append(editorNode.node.GetType().AssemblyQualifiedName);
             stringBuilder.Append("///");
-            stringBuilder.Append(guid);
-            stringBuilder.Append("///");
-            stringBuilder.Append(
-                $"{editorNode.node.pos.x},{editorNode.node.pos.y},{editorNode.node.pos.width},{editorNode.node.pos.height}");
-            stringBuilder.Append("///");
-            stringBuilder.Append(editorNode.node.GetStringData());
+            editorNode.node.SetGuid(guid);
+            stringBuilder.Append(editorNode.node.GetJsonData());
+            editorNode.node.SetGuid(temp);
             stringBuilder.Append("|||");
         }
 
@@ -404,13 +396,24 @@ namespace BehaviourTreeGraphEditor.Editor
             AddElement(editorNode);
         }
 
-        public BehaviourTreeGraphNode CreateNode(Type nodeType,
+        public void CreateNode(Type nodeType,
             Action<BehaviourTreeGraphNode> beforeDrawEditorAction = default, string guid = "")
         {
             Undo.RecordObject(m_GraphAsset, $"Created {nodeType.Name}");
-            BehaviourTreeGraphNode node = m_GraphAsset.CreateNode(nodeType, guid);
+            var node = m_GraphAsset.CreateNode(nodeType, guid);
             EditorUtility.SetDirty(m_GraphAsset);
             beforeDrawEditorAction?.Invoke(node);
+
+            CreateEditorNode(node);
+        }
+        
+        private BehaviourTreeGraphNode CreateNode(Type nodeType, string jsonData)
+        {
+            Undo.RecordObject(m_GraphAsset, $"Created {nodeType.Name}");
+            var node = m_GraphAsset.CreateNode(nodeType);
+            node.LoadDataFromJson(jsonData);
+            node.InitializeState();
+            EditorUtility.SetDirty(m_GraphAsset);
 
             CreateEditorNode(node);
             return node;
