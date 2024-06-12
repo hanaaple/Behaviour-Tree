@@ -53,7 +53,9 @@ namespace BehaviourTreeGraphEditor.Editor
 
             styleSheets.Add(styleSheet);
 
-            this.AddManipulator(new ContentZoomer());
+            var contentZoomer = new ContentZoomer();
+            contentZoomer.maxScale = 1.5f;
+            this.AddManipulator(contentZoomer);
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());

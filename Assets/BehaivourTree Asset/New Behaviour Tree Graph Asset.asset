@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e057053d5d9331843a2a4e0b1b291124, type: 3}
+  m_Name: New Behaviour Tree Graph Asset
+  m_EditorClassIdentifier: 
+  treeState: 1
+  rootNode: {fileID: 0}
+  nodes:
+  - {fileID: 3114243045798312270}
+  - {fileID: 86248717893511526}
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+--- !u!114 &86248717893511526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c566abec39854492b618a067c17e7468, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  description: 
+  position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  guid: 2a519cb5-1689-4112-a43a-9547d2a685a6
+  nodeState: 0
+  started: 0
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  child: {fileID: 0}
+--- !u!114 &3114243045798312270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c566abec39854492b618a067c17e7468, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  description: 
+  position:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  guid: 32bde28d-754c-4c6d-bb17-57cdd3390cf6
+  nodeState: 0
+  started: 0
+  blackboard:
+    moveToPosition: {x: 0, y: 0, z: 0}
+    moveToObject: {fileID: 0}
+  child: {fileID: 0}

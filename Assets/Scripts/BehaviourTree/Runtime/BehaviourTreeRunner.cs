@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace BehaviourTreeGraph.Runtime
 {
@@ -7,9 +8,12 @@ namespace BehaviourTreeGraph.Runtime
     {
         public BehaviourTreeGraphAsset behaviourTree;
 
+        public BlackBoard blackBoard;
+
         protected void Init()
         {
             behaviourTree = behaviourTree.Clone();
+            behaviourTree.Bind(blackBoard);
         }
     }
 }

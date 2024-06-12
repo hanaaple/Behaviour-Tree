@@ -11,7 +11,11 @@ namespace BehaviourTreeGraphEditor.Editor
     {
         private BehaviourTreeGraphView m_GraphView;
         private InspectorView m_InspectorView;
+        private IMGUIContainer m_BlackboardView;
 
+        private SerializedObject m_TreeObject;
+        private SerializedProperty blackboardProperty;
+        
         [MenuItem("BehaviourTree/Editor")]
         public static void OpenWindow()
         {
@@ -75,6 +79,13 @@ namespace BehaviourTreeGraphEditor.Editor
 
             m_GraphView = root.Q<BehaviourTreeGraphView>();
             m_InspectorView = root.Q<InspectorView>();
+            m_BlackboardView = root.Q<IMGUIContainer>();
+            m_BlackboardView.onGUIHandler = () =>
+            {
+                m_TreeObject.Update();
+                EditorGUILayout.PropertyField(blackboardProperty);
+                m_TreeObject.ApplyModifiedProperties();
+            };
             m_InspectorView.Initialize();
 
             m_GraphView.Initialize(this);
@@ -114,6 +125,12 @@ namespace BehaviourTreeGraphEditor.Editor
                 {
                     m_GraphView?.PopulateView(graphAsset);
                 }
+            }
+
+            if (graphAsset != null)
+            {
+                m_TreeObject = new SerializedObject(graphAsset);
+                blackboardProperty = m_TreeObject.FindProperty("blackboard");
             }
         }
 

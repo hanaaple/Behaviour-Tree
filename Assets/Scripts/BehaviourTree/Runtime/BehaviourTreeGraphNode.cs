@@ -32,6 +32,8 @@ namespace BehaviourTreeGraph.Runtime
         [SerializeField] [HideInInspector] private string guid;
         [SerializeField] [HideInInspector] private NodeState nodeState = NodeState.Waiting;
         [SerializeField] [HideInInspector] private bool started;
+        
+        [HideInInspector] public BlackBoard blackboard;
 
         public UnityAction<NodeState> OnChangeState = null;
 

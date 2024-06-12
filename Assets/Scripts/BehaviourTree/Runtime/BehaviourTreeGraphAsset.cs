@@ -13,10 +13,11 @@ namespace BehaviourTreeGraph.Runtime
     {
         public BehaviourTreeGraphNode.NodeState treeState = BehaviourTreeGraphNode.NodeState.Running;
         public BehaviourTreeGraphNode rootNode;
-
+        
         // have to check why undo.record(node) did not work
         public List<BehaviourTreeGraphNode> nodes = new();
-
+        public BlackBoard blackboard;
+        
         public BehaviourTreeGraphNode.NodeState Update()
         {
             if (rootNode.state is BehaviourTreeGraphNode.NodeState.Running or BehaviourTreeGraphNode.NodeState.Waiting)
@@ -75,6 +76,15 @@ namespace BehaviourTreeGraph.Runtime
             tree.nodes = new List<BehaviourTreeGraphNode>();
             Traverse(tree.rootNode, node => { tree.nodes.Add(node); });
             return tree;
+        }
+
+        public void Bind(BlackBoard blackBoard)
+        {
+            blackboard = blackBoard;
+            Traverse(rootNode, node =>
+            {
+                node.blackboard = blackboard;
+            });
         }
     }
 }
